@@ -9,8 +9,7 @@
 
 html, body {
     width: 100%;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
 }
 
 body {
@@ -21,6 +20,7 @@ body {
     align-items: center;
     padding: 10px;
     color: #fff;
+    overflow-x: hidden;
 }
 
 .container {
@@ -264,7 +264,7 @@ button:active {
     flex: 1;
 }
 
-/* MODAL TELA CHEIA - LISTA DE PARTICIPANTES (AMARELO LIMÃO, PRETO E CINZA CLARO) */
+/* MODAL TELA CHEIA - LISTA DE PARTICIPANTES */
 .players-fullscreen {
     display: none;
     position: fixed;
@@ -428,7 +428,6 @@ button:active {
     text-transform: uppercase;
 }
 
-/* NOME DO PARTICIPANTE: BRANCO LIMPO E SEM EFEITOS */
 .winner-content h1 {
     font-family: "Fredoka", sans-serif;
     color: #ffffff;
@@ -492,4 +491,103 @@ button:active {
 .btn-close-winner:hover {
     box-shadow: 0 0 30px rgba(0, 238, 255, 1);
     transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   AJUSTES RESPONSIVOS PARA CELULARES E DISPOSITIVOS MÓVEIS
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    body {
+        overflow-y: auto;
+        padding: 5px;
+    }
+
+    .container {
+        height: auto;
+        min-height: 98vh;
+        padding: 2px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 5px;
+    }
+
+    .card {
+        padding: 6px;
+    }
+
+    .card-header {
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+    }
+
+    .grid-container {
+        gap: 2px;
+        padding: 4px;
+    }
+
+    .num-btn {
+        aspect-ratio: 1;
+        height: auto;
+        font-size: clamp(0.65rem, 3.2vw, 0.95rem);
+        border-radius: 3px;
+    }
+
+    .action-panel {
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+
+    /* Ajustes dos Modais no Celular */
+    .players-fullscreen-content {
+        padding: 15px;
+        width: 98%;
+        height: 95vh;
+        max-height: 95vh;
+    }
+
+    .players-fullscreen-content h2 {
+        font-size: 1.4rem;
+    }
+
+    .players-grid-list {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .players-grid-list li {
+        padding: 8px 12px;
+        font-size: 0.95rem;
+    }
+
+    .winner-content {
+        padding: 20px 15px;
+        width: 95%;
+    }
+
+    .winner-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .winner-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .number-circle {
+        width: 75px;
+        height: 75px;
+        font-size: 2.2rem;
+    }
 }
