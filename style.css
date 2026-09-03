@@ -609,3 +609,44 @@ button:active {
         font-size: 2.2rem;
     }
 }
+
+/* ==========================================================================
+   AJUSTES APENAS PARA TELAS PEQUENAS (CELULARES)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    #grid-numeros,
+    .grid-container {
+        display: grid !important;
+        grid-template-columns: repeat(9, 1fr) !important;
+        gap: 3px !important;
+        padding: 4px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+    }
+
+    .num-btn {
+        width: 100% !important;
+        min-width: 0 !important;
+        height: auto !important;
+        aspect-ratio: 1 / 1 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        font-size: clamp(0.5rem, 2.8vw, 0.75rem) !important;
+        border-radius: 4px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Container principal no celular */
+    .container,
+    .card {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 6px !important;
+        box-sizing: border-box !important;
+    }
+}
