@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>BINGO DO RENATO</h1>
+        <p class="subtitle">Escolha os números</p>
+
+        <div class="main-content">
+            <div class="card">
+                <div class="card-header">Tabela de Números</div>
+                <div id="grid-numeros" class="grid-container"></div>
+            </div>
+        </div>
+
+        <div class="action-panel">
+            <button id="btn-ver-jogadores" class="btn-players">Ver Participantes</button>
+            <button id="btn-vencedor" class="btn-winner">Sorteie Ganhar</button>
+            <button id="btn-resetar" class="btn-reset">Resetar</button>
+        </div>
+    </div>
+
+    <!-- MODAL PARA ADICIONAR NOME -->
+    <div id="modal-nome" class="modal">
+        <div class="modal-content">
+            <h3 id="modal-titulo">Número Selecionado</h3>
+            <input type="text" id="input-nome" placeholder="Digite seu nome" maxlength="20">
+            <div class="modal-buttons">
+                <button id="btn-confirmar-nome" class="btn-confirm">Confirmar</button>
+                <button id="btn-cancelar-nome" class="btn-cancel">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL TELA CHEIA PARA LISTA DE JOGADORES -->
+    <div id="modal-jogadores-fullscreen" class="players-fullscreen">
+        <div class="players-fullscreen-content">
+            <h2>Lista de Participantes</h2>
+            <div class="players-grid-container">
+                <ul id="lista-jogadores-completa" class="players-grid-list"></ul>
+            </div>
+            <button id="btn-fechar-jogadores" class="btn-close-players">Fechar</button>
+        </div>
+    </div>
+
+    <!-- TELA DE VENCEDOR -->
+    <div id="vencedor-fullscreen" class="winner-fullscreen">
+        <div class="winner-content">
+            <h2>Vencedor!</h2>
+            <h1 id="nome-vencedor">Nome</h1>
+            <div class="winner-number-box">
+                <span>Número Sorteado</span>
+                <div id="numero-vencedor" class="number-circle">0</div>
+            </div>
+            <button id="btn-fechar-vencedor" class="btn-close-winner">Fechar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
