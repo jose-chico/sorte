@@ -22,9 +22,28 @@ const nomeVencedor = document.getElementById("nome-vencedor");
 const numeroVencedor = document.getElementById("numero-vencedor");
 const btnFecharVencedor = document.getElementById("btn-fechar-vencedor");
 
+function abrirModalNome(numero) {
+    numeroSelecionado = numero;
+    if (modalTitulo) {
+        modalTitulo.textContent = `Número ${numero}`;
+    }
+    if (inputNome) {
+        inputNome.value = "";
+    }
+    if (modalNome) {
+        modalNome.style.display = "flex";
+    }
+    if (inputNome) {
+        inputNome.focus();
+    }
+}
+
 function inicializarGrid() {
+    if (!gridNumeros) {
+        return;
+    }
     gridNumeros.innerHTML = "";
-    for (let i = 1; i <= TOTAL_NUMEROS; i++) {
+    for (let i = 1; i <= TOTAL_NUMEROS; i += 1) {
         const btn = document.createElement("button");
         btn.classList.add("num-btn");
         btn.textContent = i;
@@ -39,37 +58,38 @@ function inicializarGrid() {
     }
 }
 
-function abrirModalNome(numero) {
-    numeroSelecionado = numero;
-    modalTitulo.textContent = `Número ${numero}`;
-    inputNome.value = "";
-    modalNome.style.display = "flex";
-    inputNome.focus();
-}
-
 function fecharModalNome() {
-    modalNome.style.display = "none";
+    if (modalNome) {
+        modalNome.style.display = "none";
+    }
     numeroSelecionado = null;
 }
 
 function confirmarNome() {
-    const nome = inputNome.value.trim();
+    const nome = inputNome ? inputNome.value.trim() : "";
     if (!nome) {
         alert("Por favor, digite um nome.");
         return;
     }
 
-    participantes[numeroSelecionado] = nome;
+    if (numeroSelecionado !== null) {
+        participantes[numeroSelecionado] = nome;
 
-    const btn = gridNumeros.querySelector(`[data-numero="${numeroSelecionado}"]`);
-    if (btn) {
-        btn.disabled = true;
+        if (gridNumeros) {
+            const btn = gridNumeros.querySelector(`[data-numero="${numeroSelecionado}"]`);
+            if (btn) {
+                btn.disabled = true;
+            }
+        }
     }
 
     fecharModalNome();
 }
 
 function atualizarListaJogadores() {
+    if (!listaJogadoresCompleta) {
+        return;
+    }
     listaJogadoresCompleta.innerHTML = "";
     const numeros = Object.keys(participantes).sort((a, b) => Number(a) - Number(b));
 
@@ -80,7 +100,14 @@ function atualizarListaJogadores() {
 
     numeros.forEach((num) => {
         const li = document.createElement("li");
-        li.innerHTML = `<span>${participantes[num]}</span><strong>${num}</strong>`;
+        const spanNome = document.createElement("span");
+        spanNome.textContent = participantes[num];
+
+        const strongNumero = document.createElement("strong");
+        strongNumero.textContent = num;
+
+        li.appendChild(spanNome);
+        li.appendChild(strongNumero);
         listaJogadoresCompleta.appendChild(li);
     });
 }
@@ -92,12 +119,19 @@ function sortearVencedor() {
         return;
     }
 
-    const numeroSorteado = numeros[Math.floor(Math.random() * numeros.length)];
-    const nomeSorteado = participantes[numeroSorteado];
+    const numerosComoNumeros = numeros.map(Number);
+    const maiorNumero = Math.max(...numerosComoNumeros);
+    const nomeSorteado = participantes[maiorNumero];
 
-    nomeVencedor.textContent = nomeSorteado;
-    numeroVencedor.textContent = numeroSorteado;
-    vencedorFullscreen.style.display = "flex";
+    if (nomeVencedor) {
+        nomeVencedor.textContent = nomeSorteado;
+    }
+    if (numeroVencedor) {
+        numeroVencedor.textContent = maiorNumero;
+    }
+    if (vencedorFullscreen) {
+        vencedorFullscreen.style.display = "flex";
+    }
 }
 
 function resetarSorteio() {
@@ -107,35 +141,61 @@ function resetarSorteio() {
     }
 }
 
-btnConfirmarNome.addEventListener("click", confirmarNome);
-btnCancelarNome.addEventListener("click", fecharModalNome);
+if (btnConfirmarNome) {
+    btnConfirmarNome.addEventListener("click", confirmarNome);
+}
 
-inputNome.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-        confirmarNome();
-    }
-});
+if (btnCancelarNome) {
+    btnCancelarNome.addEventListener("click", fecharModalNome);
+}
 
-btnVerJogadores.addEventListener("click", () => {
-    atualizarListaJogadores();
-    modalJogadoresFullscreen.style.display = "flex";
-});
+if (inputNome) {
+    inputNome.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+            confirmarNome();
+        }
+    });
+}
 
-btnFecharJogadores.addEventListener("click", () => {
-    modalJogadoresFullscreen.style.display = "none";
-});
+if (btnVerJogadores) {
+    btnVerJogadores.addEventListener("click", () => {
+        atualizarListaJogadores();
+        if (modalJogadoresFullscreen) {
+            modalJogadoresFullscreen.style.display = "flex";
+        }
+    });
+}
 
-modalJogadoresFullscreen.addEventListener("click", (e) => {
-    if (e.target === modalJogadoresFullscreen) {
-        modalJogadoresFullscreen.style.display = "none";
-    }
-});
+if (btnFecharJogadores) {
+    btnFecharJogadores.addEventListener("click", () => {
+        if (modalJogadoresFullscreen) {
+            modalJogadoresFullscreen.style.display = "none";
+        }
+    });
+}
 
-btnVencedor.addEventListener("click", sortearVencedor);
-btnResetar.addEventListener("click", resetarSorteio);
+if (modalJogadoresFullscreen) {
+    modalJogadoresFullscreen.addEventListener("click", (e) => {
+        if (e.target === modalJogadoresFullscreen) {
+            modalJogadoresFullscreen.style.display = "none";
+        }
+    });
+}
 
-btnFecharVencedor.addEventListener("click", () => {
-    vencedorFullscreen.style.display = "none";
-});
+if (btnVencedor) {
+    btnVencedor.addEventListener("click", sortearVencedor);
+}
+
+if (btnResetar) {
+    btnResetar.addEventListener("click", resetarSorteio);
+}
+
+if (btnFecharVencedor) {
+    btnFecharVencedor.addEventListener("click", () => {
+        if (vencedorFullscreen) {
+            vencedorFullscreen.style.display = "none";
+        }
+    });
+}
 
 inicializarGrid();
