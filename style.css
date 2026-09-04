@@ -549,7 +549,7 @@ button:active {
         aspect-ratio: 1 / 1 !important;
         padding: 0 !important;
         margin: 0 !important;
-        font-size: clamp(0.85rem, 3.8vw, 1.15rem) !important;
+        font-size: clamp(2.85rem, 3.8vw, 1.15rem) !important;
         font-weight: 900 !important;
         border-radius: 4px !important;
         display: flex !important;
