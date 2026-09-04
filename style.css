@@ -459,7 +459,7 @@ button:active {
 .number-circle {
     font-family: "Fredoka", sans-serif;
     background: radial-gradient(circle at 35% 35%, #8a2be2 0%, #4b0082 100%);
-    color: #ffef00;
+    color: #ffd000;
     width: 95px;
     height: 95px;
     border-radius: 50%;
