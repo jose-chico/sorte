@@ -459,7 +459,7 @@ button:active {
 .number-circle {
     font-family: "Fredoka", sans-serif;
     background: radial-gradient(circle at 35% 35%, #8a2be2 0%, #4b0082 100%);
-    color: #ffd000;
+    color: #ffef00;
     width: 95px;
     height: 95px;
     border-radius: 50%;
@@ -496,6 +496,9 @@ button:active {
 /* ==========================================================================
    AJUSTES RESPONSIVOS PARA CELULARES E DISPOSITIVOS MÓVEIS
    ========================================================================== */
+/* ==========================================================================
+   AJUSTES RESPONSIVOS PARA CELULARES E DISPOSITIVOS MÓVEIS
+   ========================================================================== */
 @media screen and (max-width: 768px) {
     body {
         overflow-y: auto;
@@ -528,34 +531,29 @@ button:active {
         margin-bottom: 4px;
     }
 
-    /* GRADE AJUSTADA PARA NÃO ESTOURAR NO CELULAR */
+    /* AJUSTE FIXO PARA A GRADE DE NÚMEROS NÃO ESTOURAR */
     .grid-container, 
     #grid-numeros {
         display: grid !important;
         grid-template-columns: repeat(9, 1fr) !important;
-        gap: 3px !important;
-        padding: 4px !important;
+        gap: 2px !important;
+        padding: 3px !important;
         width: 100% !important;
-        max-width: 100% !important;
         box-sizing: border-box !important;
-        overflow: hidden !important;
     }
 
-    /* FONTE DOS NÚMEROS AUMENTADA E DESTACADA */
+    /* AJUSTE DOS BOTÕES PARA CABEREM NA TELA DO CELULAR */
     .num-btn {
         width: 100% !important;
-        min-width: 0 !important;
         height: auto !important;
         aspect-ratio: 1 / 1 !important;
         padding: 0 !important;
         margin: 0 !important;
-        font-size: clamp(2.85rem, 3.8vw, 1.15rem) !important;
-        font-weight: 900 !important;
-        border-radius: 4px !important;
+        font-size: clamp(0.55rem, 2.5vw, 0.8rem) !important;
+        border-radius: 3px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        box-sizing: border-box !important;
     }
 
     .action-panel {
@@ -570,7 +568,7 @@ button:active {
         font-size: 0.95rem;
     }
 
-    /* MODAIS RESPONSIVOS */
+    /* Modais responsivos */
     .players-fullscreen-content {
         padding: 15px;
         width: 98%;
@@ -609,5 +607,46 @@ button:active {
         width: 75px;
         height: 75px;
         font-size: 2.2rem;
+    }
+}
+
+/* ==========================================================================
+   AJUSTES APENAS PARA TELAS PEQUENAS (CELULARES)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    #grid-numeros,
+    .grid-container {
+        display: grid !important;
+        grid-template-columns: repeat(9, 1fr) !important;
+        gap: 3px !important;
+        padding: 4px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+    }
+
+    .num-btn {
+        width: 100% !important;
+        min-width: 0 !important;
+        height: auto !important;
+        aspect-ratio: 1 / 1 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        font-size: clamp(2.5rem, 2.8vw, 0.75rem) !important;
+        border-radius: 4px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Container principal no celular */
+    .container,
+    .card {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 6px !important;
+        box-sizing: border-box !important;
     }
 }
