@@ -109,7 +109,7 @@ h1 {
     height: 100%;
     font-size: min(1.85rem, 1.8vh);
     font-weight: 700;
-    color: #111;
+    color: rgb(0, 58, 247)adb;
     cursor: pointer;
     display: flex;
     align-items: center;
